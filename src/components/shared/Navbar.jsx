@@ -46,6 +46,32 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+      <li>
+        <NavLink 
+          to="/about" 
+          className={({ isActive }) => 
+            `px-4 py-2 rounded-lg transition duration-200 ${
+              isActive ? 'bg-primary text-primary-content' : 'hover:bg-base-200'
+            }`
+          }
+          onClick={closeMenu}
+        >
+          About
+        </NavLink>
+      </li>
+      <li>
+        <NavLink 
+          to="/blogs" 
+          className={({ isActive }) => 
+            `px-4 py-2 rounded-lg transition duration-200 ${
+              isActive ? 'bg-primary text-primary-content' : 'hover:bg-base-200'
+            }`
+          }
+          onClick={closeMenu}
+        >
+          Blogs
+        </NavLink>
+      </li>
       
       {user && (
         <li>

@@ -10,6 +10,9 @@ import AddTask from "../pages/dashboard/AddTask";
 import AllTasks from "../pages/dashboard/AllTasks";
 import UpdateTask from "../pages/dashboard/UpdateTask";
 import Login from "../pages/auth/Login";
+import About from "../pages/About";
+import Blog from "../pages/Blog";
+import BlogPost from "../pages/BlogPost";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +43,18 @@ export const router = createBrowserRouter([
                 Component:UpdateTask
             }
         ]
+      },
+      {
+        path:"/about",
+        Component:About
+      },
+       {
+        path:"/blogs",
+        Component:Blog
+      },
+      {
+  path: "blog/:id",
+  Component: BlogPost,
       }
     ]
  },
