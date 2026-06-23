@@ -82,6 +82,9 @@ const UpdateTask = () => {
   });
         setTimeout(() => {
           navigate('/dashboard/all-tasks');
+           setTimeout(() => {
+                window.location.reload(); 
+              }, 100);
         }, 1500);
       }
     } catch (err) {

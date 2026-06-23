@@ -97,6 +97,9 @@ const AllTasks = () => {
           timer: 1500,
           showConfirmButton: false,
         });
+          setTimeout(() => {
+      window.location.reload(); 
+    }, 100);
       }
     } catch (err) {
       console.error('Delete task error:', err);

@@ -156,9 +156,7 @@ const Footer = () => {
               <Link to="/terms" className="hover:text-primary transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/cookies" className="hover:text-primary transition-colors">
-                Cookies
-              </Link>
+               
               <span className="flex items-center gap-1">
                 Made with <FaHeart className="text-error text-xs" /> by AWTOMATIG
               </span>

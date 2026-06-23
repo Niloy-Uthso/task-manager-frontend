@@ -121,7 +121,7 @@ const About = () => {
           <p className="text-lg text-base-content/70 mb-6">
             Start organizing your tasks and boosting your productivity.
           </p>
-          <Link to="/register" className="btn btn-primary btn-lg gap-2">
+          <Link to="/dashboard/add-task" className="btn btn-primary btn-lg gap-2">
             Get Started Free
             <MdTask />
           </Link>
