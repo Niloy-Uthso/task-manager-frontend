@@ -27,8 +27,7 @@ const Blog = () => {
     }
   };
 
-  // Get unique categories
-  const categories = ['All', ...new Set(blogs.map(blog => blog.category))];
+   const categories = ['All', ...new Set(blogs.map(blog => blog.category))];
 
   const filteredBlogs = blogs.filter(blog => {
     const matchesSearch = blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -48,16 +47,14 @@ const Blog = () => {
   return (
     <div className="min-h-[calc(100vh-64px)] py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
+         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Blog</h1>
           <p className="text-lg text-base-content/60">
             Tips, insights, and best practices for better task management
           </p>
         </div>
 
-        {/* Search and Filter */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
+         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="flex-1 relative">
             <input
               type="text"
@@ -83,8 +80,7 @@ const Blog = () => {
           </div>
         </div>
 
-        {/* Blog Posts Grid */}
-        {filteredBlogs.length === 0 ? (
+         {filteredBlogs.length === 0 ? (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🔍</div>
             <h3 className="text-xl font-semibold mb-2">No articles found</h3>

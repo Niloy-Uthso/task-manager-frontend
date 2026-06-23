@@ -1,5 +1,4 @@
-// src/components/home/Hero.jsx
-import React from 'react';
+ import React from 'react';
 import { Link } from 'react-router';
 import { MdTask, MdArrowForward, MdCheckCircle, MdTrendingUp, MdSecurity } from 'react-icons/md';
 import useAuth from '../hooks/userAuth';
@@ -11,14 +10,12 @@ const Hero = () => {
     <div className="hero min-h-[calc(100vh-64px)] bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse gap-12">
         
-        {/* Hero Image/Illustration */}
-        <div className="flex-1 flex justify-center">
+         <div className="flex-1 flex justify-center">
           <div className="relative">
             <div className="w-72 h-72 lg:w-96 lg:h-96 rounded-full bg-primary/10 flex items-center justify-center">
               <MdTask className="text-8xl lg:text-9xl text-primary" />
             </div>
-            {/* Floating badges */}
-            <div className="absolute -top-4 -right-4 bg-success text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-bounce">
+             <div className="absolute -top-4 -right-4 bg-success text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-bounce">
               ✨ Free
             </div>
             <div className="absolute -bottom-4 -left-4 bg-warning text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
@@ -27,8 +24,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Hero Text */}
-        <div className="flex-1 text-center lg:text-left">
+         <div className="flex-1 text-center lg:text-left">
           <h1 className="text-4xl lg:text-6xl font-bold">
             Manage Your Tasks
             <span className="text-primary block mt-2">Effortlessly</span>
@@ -38,8 +34,7 @@ const Hero = () => {
             Stay organized, track your progress, and get things done with our simple and powerful task management tool.
           </p>
 
-          {/* Features quick list */}
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-6">
+           <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-6">
             <div className="flex items-center gap-2">
               <MdCheckCircle className="text-success" />
               <span className="text-sm">Add Tasks</span>
@@ -54,8 +49,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
             {user ? (
               <Link to="/dashboard" className="btn btn-primary btn-lg gap-2">
                 Go to Dashboard
@@ -74,8 +68,7 @@ const Hero = () => {
             )}
           </div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap gap-8 mt-8 justify-center lg:justify-start">
+           <div className="flex flex-wrap gap-8 mt-8 justify-center lg:justify-start">
             <div>
               <p className="text-2xl font-bold text-primary">10K+</p>
               <p className="text-sm text-base-content/60">Active Users</p>

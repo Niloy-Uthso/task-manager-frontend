@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { FaEdit } from 'react-icons/fa';
  import axios from 'axios';
 import useAuth from '../../hooks/userAuth';
+import Swal from 'sweetalert2';
 
 const UpdateTask = () => {
   const { id } = useParams();
@@ -16,8 +17,7 @@ const UpdateTask = () => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
-  // Fetch task data
-  useEffect(() => {
+   useEffect(() => {
     const fetchTask = async () => {
       try {
         const response = await axios.get(
@@ -27,6 +27,7 @@ const UpdateTask = () => {
           }
         );
 
+ 
         if (response.data.success) {
           const task = response.data.data;
           setValue('title', task.title);
@@ -35,6 +36,12 @@ const UpdateTask = () => {
         }
       } catch (err) {
         console.error('Fetch task error:', err);
+         Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Failed to load task. Please try again.',
+          confirmButtonColor: '#4F46E5',
+        });
         setError('Failed to load task');
       } finally {
         setFetching(false);
@@ -43,6 +50,12 @@ const UpdateTask = () => {
 
     fetchTask();
   }, [id, user.uid, setValue]);
+    useEffect(() => {
+      window.scrollTo({
+        top: 600,
+        behavior: 'smooth'
+      });
+    }, []);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -60,6 +73,13 @@ const UpdateTask = () => {
 
       if (response.data.success) {
         setSuccess('Task updated successfully!');
+          Swal.fire({
+    icon: 'success',
+    title: 'Success!',
+    text: 'Task updated successfully!',
+    timer: 1500,
+    showConfirmButton: false,
+  });
         setTimeout(() => {
           navigate('/dashboard/all-tasks');
         }, 1500);
@@ -71,6 +91,7 @@ const UpdateTask = () => {
       setLoading(false);
     }
   };
+  
 
   if (fetching) {
     return (
@@ -79,7 +100,11 @@ const UpdateTask = () => {
       </div>
     );
   }
+       
+  if(error!=='')
+    navigate('/dashboard/all-tasks');
 
+ 
   return (
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center gap-3 mb-6">
@@ -92,23 +117,20 @@ const UpdateTask = () => {
         </div>
       </div>
 
-      {/* Success Message */}
-      {success && (
+       {success && (
         <div className="alert alert-success mb-6">
           <span>{success}</span>
         </div>
       )}
 
-      {/* Error Message */}
-      {error && (
+       {error && (
         <div className="alert alert-error mb-6">
           <span>{error}</span>
         </div>
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="card bg-base-100 shadow-lg p-6">
-        {/* Title Field */}
-        <div className="form-control mb-4">
+         <div className="form-control mb-4">
           <label className="label">
             <span className="label-text font-medium">Task Title <span className="text-error">*</span></span>
           </label>
@@ -133,8 +155,7 @@ const UpdateTask = () => {
           )}
         </div>
 
-        {/* Description Field */}
-        <div className="form-control mb-4">
+         <div className="form-control mb-4">
           <label className="label">
             <span className="label-text font-medium">Description <span className="text-error">*</span></span>
           </label>
@@ -158,8 +179,7 @@ const UpdateTask = () => {
           )}
         </div>
 
-        {/* Status Field */}
-        <div className="form-control mb-6">
+         <div className="form-control mb-6">
           <label className="label">
             <span className="label-text font-medium">Status <span className="text-error">*</span></span>
           </label>
@@ -179,8 +199,7 @@ const UpdateTask = () => {
           )}
         </div>
 
-        {/* Submit Button */}
-        <div className="flex gap-3">
+         <div className="flex gap-3">
           <button
             type="submit"
             className={`btn btn-primary flex-1 ${loading ? 'loading' : ''}`}

@@ -1,10 +1,11 @@
 // src/pages/dashboard/AddTask.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { MdAdd, MdClose } from 'react-icons/md';
  import axios from 'axios';
 import useAuth from '../../hooks/userAuth';
+import Swal from 'sweetalert2';
 
 const AddTask = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -13,7 +14,12 @@ const AddTask = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
-
+ useEffect(() => {
+    window.scrollTo({
+      top: 600,
+      behavior: 'smooth'
+    });
+  }, []);
   const onSubmit = async (data) => {
     setLoading(true);
     setError('');
@@ -36,9 +42,18 @@ const AddTask = () => {
 
       if (response.data.success) {
         setSuccess('Task added successfully!');
+         Swal.fire({
+    icon: 'success',
+    title: 'Success!',
+    text: 'Task added successfully!',
+    timer: 1500,
+    showConfirmButton: false,
+  });
+  
+  
         reset();
         setTimeout(() => {
-          navigate('/dashboard/create-task');
+          navigate('/dashboard');
         }, 1500);
       }
     } catch (err) {
@@ -61,23 +76,20 @@ const AddTask = () => {
         </div>
       </div>
 
-      {/* Success Message */}
-      {success && (
+       {success && (
         <div className="alert alert-success mb-6">
           <span>{success}</span>
         </div>
       )}
 
-      {/* Error Message */}
-      {error && (
+       {error && (
         <div className="alert alert-error mb-6">
           <span>{error}</span>
         </div>
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="card bg-base-100 shadow-lg p-6">
-        {/* Title Field */}
-        <div className="form-control mb-4">
+         <div className="form-control mb-4">
           <label className="label">
             <span className="label-text font-medium">Task Title <span className="text-error">*</span></span>
           </label>
@@ -102,8 +114,7 @@ const AddTask = () => {
           )}
         </div>
 
-        {/* Description Field */}
-        <div className="form-control mb-4">
+         <div className="form-control mb-4">
           <label className="label">
             <span className="label-text font-medium">Description <span className="text-error">*</span></span>
           </label>
@@ -127,8 +138,7 @@ const AddTask = () => {
           )}
         </div>
 
-        {/* Status Field */}
-        <div className="form-control mb-6">
+         <div className="form-control mb-6">
           <label className="label">
             <span className="label-text font-medium">Status <span className="text-error">*</span></span>
           </label>
@@ -148,8 +158,7 @@ const AddTask = () => {
           )}
         </div>
 
-        {/* Submit Button */}
-        <div className="flex gap-3">
+         <div className="flex gap-3">
           <button
             type="submit"
             className={`btn btn-primary flex-1 ${loading ? 'loading' : ''}`}

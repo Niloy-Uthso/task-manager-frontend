@@ -40,16 +40,14 @@ const Login = () => {
             Login to manage your tasks
           </p>
 
-          {/* Error Message */}
-          {error && (
+           {error && (
             <div className="alert alert-error mb-4">
               <span>{error}</span>
             </div>
           )}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Email Field */}
-            <div className="form-control">
+             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Email Address</span>
               </label>
@@ -77,8 +75,7 @@ const Login = () => {
               )}
             </div>
 
-            {/* Password Field */}
-            <div className="form-control">
+             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Password</span>
               </label>
@@ -113,15 +110,14 @@ const Login = () => {
               )}
             </div>
 
-            {/* Forgot Password Link */}
+             
             <div className="text-right">
-              <Link to="/forgot-password" className="link link-primary text-sm">
-                Forgot Password?
+              <Link to="/" className="link link-primary text-sm">
+                Go back to home?
               </Link>
             </div>
 
-            {/* Submit Button */}
-            <div className="form-control mt-6">
+             <div className="form-control mt-6">
               <button
                 type="submit"
                 className={`btn btn-primary w-full ${loading ? 'loading' : ''}`}
@@ -131,8 +127,7 @@ const Login = () => {
               </button>
             </div>
 
-            {/* Register Link */}
-            <div className="text-center mt-4">
+             <div className="text-center mt-4">
               <p className="text-sm text-base-content/60">
                 Don't have an account?{' '}
                 <Link to="/register" className="link link-primary font-medium">

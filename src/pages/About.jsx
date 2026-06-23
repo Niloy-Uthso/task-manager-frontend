@@ -30,8 +30,7 @@ const About = () => {
 
   return (
     <div className="min-h-[calc(100vh-64px)]">
-      {/* Hero Section */}
-      <section className="bg-primary text-primary-content py-20 px-4">
+       <section className="bg-primary text-primary-content py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About TaskManager</h1>
           <p className="text-xl opacity-90">
@@ -40,8 +39,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-16 px-4">
+       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="flex-1">
@@ -65,8 +63,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-16 px-4 bg-base-200">
+       <section className="py-16 px-4 bg-base-200">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
           <p className="text-lg text-base-content/70 max-w-2xl mx-auto">
@@ -76,8 +73,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-16 px-4">
+       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -96,8 +92,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 px-4 bg-base-200">
+       <section className="py-16 px-4 bg-base-200">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
@@ -120,8 +115,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 px-4">
+       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Join TaskManager Today</h2>
           <p className="text-lg text-base-content/70 mb-6">

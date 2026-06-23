@@ -5,6 +5,7 @@ import { FaList, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import { MdCheckCircle, MdPending, MdPendingActions } from 'react-icons/md';
  import axios from 'axios';
 import useAuth from '../../hooks/userAuth';
+import Swal from 'sweetalert2';
 
 const AllTasks = () => {
   const { user } = useAuth();
@@ -37,13 +38,18 @@ const AllTasks = () => {
     fetchTasks();
   }, [user?.uid]);
 
-  // Filter tasks by status
-  const filteredTasks = filter === 'All' 
+    useEffect(() => {
+    window.scrollTo({
+      top: 600,
+      behavior: 'smooth'
+    });
+  }, []);
+
+   const filteredTasks = filter === 'All' 
     ? tasks 
     : tasks.filter(task => task.status === filter);
 
-  // Task status badge component
-  const getStatusBadge = (status) => {
+   const getStatusBadge = (status) => {
     const statusMap = {
       'To Do': { color: 'badge-warning', icon: <MdPending /> },
       'In Progress': { color: 'badge-info', icon: < MdPendingActions /> },
@@ -57,31 +63,52 @@ const AllTasks = () => {
       </span>
     );
   };
-  const handleDelete = async (taskId) => {
-  // Show confirmation
-  if (!window.confirm('Are you sure you want to delete this task?')) {
-    return;
-  }
+   const handleDelete = async (taskId) => {
+     const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#6b7280',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    });
 
-  try {
-    const response = await axios.delete(
-      `${import.meta.env.VITE_API_URL}/api/tasks/delete-task-by-id/${taskId}`,
-      {
-        params: { userId: user.uid }
-      }
-    );
-
-    if (response.data.success) {
-      // Remove task from state
-      setTasks(tasks.filter(task => task._id !== taskId));
-      // Show success message (optional)
-      alert('Task deleted successfully!');
+    if (!result.isConfirmed) {
+      return;
     }
-  } catch (err) {
-    console.error('Delete task error:', err);
-    alert('Failed to delete task');
-  }
-};
+
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/tasks/delete-task-by-id/${taskId}`,
+        {
+          params: { userId: user.uid }
+        }
+      );
+
+      if (response.data.success) {
+         setTasks(tasks.filter(task => task._id !== taskId));
+        
+         Swal.fire({
+          icon: 'success',
+          title: 'Deleted!',
+          text: 'Task has been deleted successfully.',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
+    } catch (err) {
+      console.error('Delete task error:', err);
+      
+       Swal.fire({
+        icon: 'error',
+        title: 'Failed to Delete',
+        text: err.response?.data?.message || 'Failed to delete task. Please try again.',
+        confirmButtonColor: '#4F46E5',
+      });
+    }
+  };
 
   if (loading) {
     return (
@@ -101,8 +128,7 @@ const AllTasks = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div className="flex items-center gap-3">
           <div className="bg-primary/10 p-3 rounded-full">
             <FaList className="text-2xl text-primary" />
@@ -120,8 +146,7 @@ const AllTasks = () => {
         </Link>
       </div>
 
-      {/* Filter Buttons */}
-      <div className="flex flex-wrap gap-2 mb-6">
+       <div className="flex flex-wrap gap-2 mb-6">
         {['All', 'To Do', 'In Progress', 'Done'].map((status) => (
           <button
             key={status}
@@ -138,8 +163,7 @@ const AllTasks = () => {
         ))}
       </div>
 
-      {/* Tasks Grid */}
-      {filteredTasks.length === 0 ? (
+       {filteredTasks.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">📋</div>
           <h3 className="text-xl font-semibold mb-2">No tasks found</h3>

@@ -10,7 +10,7 @@ import useAuth from '../../hooks/userAuth';
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const navigate = useNavigate();
-  const { signUpUser, loading } = useAuth(); // Using loading from AuthProvider
+  const { signUpUser, loading } = useAuth(); 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -23,17 +23,15 @@ const SignUp = () => {
     setError('');
 
     try {
-      // 1. Register user with Firebase using signUpUser from AuthProvider
+       
       const userCredential = await signUpUser(data.email, data.password);
       const firebaseUser = userCredential.user;
 
-      // 2. Update Firebase profile with display name
-      await updateProfile(firebaseUser, {
+       await updateProfile(firebaseUser, {
         displayName: data.name
       });
 
-      // 3. Save user to MongoDB
-      const userData = {
+       const userData = {
         uid: firebaseUser.uid,
         name: data.name,
         email: data.email,
@@ -47,8 +45,7 @@ const SignUp = () => {
       );
 
       if (response.data.success) {
-        // Redirect to dashboard
-        navigate('/dashboard');
+         navigate('/dashboard');
       }
 
     } catch (err) {
@@ -77,16 +74,14 @@ const SignUp = () => {
             Join TaskManager and start organizing your tasks
           </p>
 
-          {/* Error Message */}
-          {error && (
+           {error && (
             <div className="alert alert-error mb-4">
               <span>{error}</span>
             </div>
           )}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Name Field */}
-            <div className="form-control">
+             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Full Name</span>
               </label>
@@ -114,8 +109,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Email Field */}
-            <div className="form-control">
+             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Email Address</span>
               </label>
@@ -143,8 +137,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Password Field */}
-            <div className="form-control">
+             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Password</span>
               </label>
@@ -179,8 +172,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Confirm Password Field */}
-            <div className="form-control">
+             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Confirm Password</span>
               </label>
@@ -212,8 +204,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Submit Button */}
-            <div className="form-control mt-6">
+             <div className="form-control mt-6">
               <button
                 type="submit"
                 className={`btn btn-primary w-full ${(loading || isSubmitting) ? 'loading' : ''}`}
@@ -223,22 +214,25 @@ const SignUp = () => {
               </button>
             </div>
 
-            {/* Login Link */}
-            <div className="text-center mt-4">
+             <div className="text-center mt-4">
               <p className="text-sm text-base-content/60">
                 Already have an account?{' '}
                 <Link to="/login" className="link link-primary font-medium">
                   Login here
                 </Link>
+                
               </p>
+               
             </div>
           </form>
 
-          {/* Divider */}
-          <div className="divider text-xs text-base-content/40">OR</div>
-
-          {/* Terms */}
-          <p className="text-xs text-center text-base-content/40">
+           <div className="divider text-xs text-base-content/40">OR</div>
+            <div className="text-right">
+                            <Link to="/" className="link link-primary text-sm">
+                              Go back to home?
+                            </Link>
+                          </div>
+           <p className="text-xs text-center text-base-content/40">
             By creating an account, you agree to our{' '}
             <Link to="/terms" className="link link-primary">Terms of Service</Link>
             {' '}and{' '}

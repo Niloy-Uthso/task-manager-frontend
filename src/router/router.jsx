@@ -13,6 +13,9 @@ import Login from "../pages/auth/Login";
 import About from "../pages/About";
 import Blog from "../pages/Blog";
 import BlogPost from "../pages/BlogPost";
+import PrivateRoutes from "../components/protection/PrivateRoutes";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsOfService from "../pages/TermsOfService";
 
 
 export const router = createBrowserRouter([
@@ -28,7 +31,7 @@ export const router = createBrowserRouter([
       },
       {
         path:"dashboard",
-        Component:DashboardLayout,
+         element:<PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
         children:[
             {
                 path:"add-task",
@@ -51,6 +54,14 @@ export const router = createBrowserRouter([
        {
         path:"/blogs",
         Component:Blog
+      },
+      {
+        path:"/privacy",
+        Component:PrivacyPolicy
+      },
+      {
+        path:"/terms",
+        Component:TermsOfService
       },
       {
   path: "blog/:id",
