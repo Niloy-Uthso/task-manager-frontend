@@ -69,7 +69,7 @@ VITE_storageBucket=YOUR_FIREBASE_STORAGE_BUCKET
 VITE_messagingSenderId=YOUR_FIREBASE_SENDER_ID
 VITE_appId=YOUR_FIREBASE_APP_ID
 
-VITE_API_URL=YOUR_BACKEND_API_URL
+VITE_API_URL=https://task-manager-backend-lime-nine.vercel.app/
 ```
 
 ### 4. Run the Development Server
