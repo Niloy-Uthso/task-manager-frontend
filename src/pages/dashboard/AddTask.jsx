@@ -34,6 +34,7 @@ const AddTask = () => {
         userEmail: user.email,
         createdAt: new Date().toISOString()
       };
+      console.log(taskData)
 
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/tasks/create-task`,
@@ -54,9 +55,9 @@ const AddTask = () => {
         reset();
         setTimeout(() => {
           navigate('/dashboard');
-            setTimeout(() => {
-      window.location.reload(); 
-    }, 100);
+    //         setTimeout(() => {
+    //   window.location.reload(); 
+    // }, 100);
         }, 1500);
       }
     } catch (err) {
