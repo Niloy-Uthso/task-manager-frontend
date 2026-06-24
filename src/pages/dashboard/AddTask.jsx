@@ -55,9 +55,9 @@ const AddTask = () => {
         reset();
         setTimeout(() => {
           navigate('/dashboard');
-    //         setTimeout(() => {
-    //   window.location.reload(); 
-    // }, 100);
+            setTimeout(() => {
+      window.location.reload(); 
+    }, 100);
         }, 1500);
       }
     } catch (err) {
